@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link href="../static/css/authentication.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <h1>SIGN UP</h1>
+
+    <form method="POST">
+        <input type="text" class="form" id="username" name="username" placeholder="Username:"/>
+
+        <br/>
+
+        <input type="email" class="form" id="email" name="email" placeholder="Email:"/>
+
+        <br/>
+
+        <input type="password" class="form" id="password" name="password" placeholder="Password:"/>
+
+        <br/>
+
+        <input type="password" class="form" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password:"/>
+
+        <br/>
+    
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <br/>
+
+    <p>
+        Already a user?
+        <a href="/login">Login</a>
+    </p>
+{% endblock %}

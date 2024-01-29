@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link href="../static/css/home.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="sidenav">
+        <h2>STUDY HUB</h2>
+
+        <button>Add</button>
+
+        <a href="">Home</a>
+        <a href="">Study Session</a>
+        <a href="">To Do List</a>
+    </div>
+
+    <div class="main">
+        <div class="topBar">
+            <button>
+                <img src=""/>
+            </button>
+        </div>
+
+        <h1>Welcome, {{ username }}</h1>
+
+        <div class="toDoToday">
+            <h2>Today</h2>
+
+            <ul id="list">
+                <li class="checked">test</li>
+            </ul>
+        </div>
+
+        <div class="calendar">
+
+        </div>
+    </div>
+{% endblock %}
