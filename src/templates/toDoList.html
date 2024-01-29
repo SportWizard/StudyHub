@@ -29,6 +29,7 @@
             <div id="header">
                 <form method="POST">
                     <input type="text" id="text" name="text" placeholder="Add task:"/>
+                    <input type="date" id="dueDate" name="dueDate" placeholder="Due date:"/>
                     <button type="submit">Add</button>
                 </form>
             </div>
@@ -45,6 +46,8 @@
                         <a href="/done-to-do/{{ task.id }}">
                             <button>{{ task.text_for_done_button }}</button>
                         </a>
+
+                        <span id="dueDate">Due date: {{ task.due_date }}</span>
                     </div>
                 {% endfor %}
             </div>

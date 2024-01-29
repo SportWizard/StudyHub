@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
+    due_date = db.Column(db.Text)
     text_for_done_button = db.Column(db.Text, default="Done")
     #the user must exist to create the task and delete all the task when the user delete the account
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
