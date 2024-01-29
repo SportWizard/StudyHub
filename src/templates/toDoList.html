@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link href="../static/css/home.css" rel="stylesheet"/>
+    <link href="../static/css/toDoList.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}To Do List{% endblock %}
+
+{% block content %}
+    <div class="sidenav">
+        <h2>STUDY HUB</h2>
+
+        <a href="/home">Home</a>
+        <a href="">Study Session</a>
+        <a href="/to-do-list">To Do List</a>
+    </div>
+
+    <div class="main">
+        <div class="topBar">
+            <button>
+                <img src=""/>
+            </button>
+        </div>
+
+        <h1>To Do</h1>
+
+        <div class="box">
+            <div id="header">
+                <form method="POST">
+                    <input type="text" id="text" name="text" placeholder="Add task:"/>
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+
+            <div id="tasks">
+                {% for task in tasks %}
+                    <div class="task">
+                        {{ task.text }}
+                        <a href="/delete-to-do/{{ task.id }}">
+                            <button>Delete</button>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
