@@ -37,6 +37,8 @@
     margin-right: 1%;
 }
 
-.task a{
-    text-decoration: underline;
+/* cross-out when the task is done */
+.Undone {
+    text-decoration: line-through;
+    color: white;
 }

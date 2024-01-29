@@ -36,9 +36,14 @@
             <div id="tasks">
                 {% for task in tasks %}
                     <div class="task">
-                        {{ task.text }}
+                        <span class="{{ task.text_for_done_button }}">{{ task.text }}</span>
+
                         <a href="/delete-to-do/{{ task.id }}">
                             <button>Delete</button>
+                        </a>
+
+                        <a href="/done-to-do/{{ task.id }}">
+                            <button>{{ task.text_for_done_button }}</button>
                         </a>
                     </div>
                 {% endfor %}
