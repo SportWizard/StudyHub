@@ -2,6 +2,7 @@
 
 {% block css %}
     <link href="../static/css/settings.css" rel="stylesheet"/>
+    <script src="../static/js/settings.js"></script>
 {% endblock %}
 
 {% block title %}Setting{% endblock %}
@@ -38,4 +39,14 @@
     <a href="/home">
         <button>Exit</button>
     </a>
+
+    <button id="deleteButton" onclick="deleteConfirmation();">Delect Account</button>
+
+    <div id="confirmation">
+        <a href="/delete-account">
+            <button>Confirm</button>
+        </a>
+
+        <button onclick="cancelConfirmation();">Cancel</button>
+    </div>
 {% endblock %}

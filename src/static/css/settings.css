@@ -31,3 +31,18 @@ label {
     border-radius: 5px;
     text-align: left;
 }
+
+#deleteButton {
+    width: 150px;
+    height: 40px;
+    color: white;
+    background-color: red;
+    display: block;
+    margin-top: 2%;
+    margin-left: 45%;
+}
+
+#confirmation {
+    display: none;
+    margin-top: 2%;
+}
