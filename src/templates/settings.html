@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-    <link href="../static/css/settings.css" rel="stylesheet"/>
+    <link href="../static/css/settings.css" rel="stylesheet" type="text/css"/>
     <script src="../static/js/settings.js"></script>
 {% endblock %}
 
@@ -9,23 +9,20 @@
 
 {% block content %}
     <h1>Settings</h1>
-    
-    <img src=""/>
-
-    <button>Browse</button>
 
     <form method="POST">
-        <label>New Username:</label>
+
+        <h2>New Username:</h2>
         <input type="text" class="form" id="username" name="username" placeholder="{{ username }}"/>
 
         <br/>
 
-        <label>New Password:</label>
+        <h2>New Password:</h2>
         <input type="password" class="form" id="password" name="password" placeholder="New Password:"/>
 
         <br/>
 
-        <label>Confirm New Password:</label>
+        <h2>Confirm New Password:</h2>
         <input type="password" class="form" id="confirmPassword" name="confirmPassword" placeholder="Confirm New Password:"/>
 
         <br/>

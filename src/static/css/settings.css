@@ -20,8 +20,13 @@ button {
     width: 100px;
 }
 
-label {
+h2 {
     font-size: 30px;
+    display: inline;
+}
+
+input {
+    margin-bottom: 2%;
 }
 
 .form {

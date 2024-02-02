@@ -58,8 +58,14 @@ def delete_to_do(id):
     if not task:
         flash("Task does not exist", category="error")
     else:
-        db.session.delete(task)
+        db.session.delete(task) #delete task
         db.session.commit()
+
         flash("Task deleted", category="success")
 
     return redirect(url_for("views.to_do_list"))
+
+@views.route("/study-session")
+@login_required
+def study_session():
+    return render_template("studySession.html")

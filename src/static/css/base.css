@@ -46,7 +46,7 @@
     margin-bottom: 40px;
 }
 
-#profilePictureButton {
+#dropdownButton {
     float: right;
     margin-right: 40px;
     height: 50px;
@@ -59,6 +59,7 @@
     z-index: 1; /* to make it stay on top */
     background-color: gray;
     width: 200%;
+    margin-top: 40px;
     padding-left: 25%;
     padding-right: 50%;
     border-radius: 5px;
