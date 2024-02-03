@@ -69,3 +69,8 @@ def delete_to_do(id):
 @login_required
 def study_session():
     return render_template("studySession.html")
+
+@views.route("/about")
+@login_required
+def about():
+    return render_template("about.html")
