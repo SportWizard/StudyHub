@@ -43,19 +43,21 @@
 
             <div id="tasks">
                 {% for task in tasks %}
-                    <div class="task">
-                        <span class="{{ task.text_for_done_button }}">{{ task.text }}</span>
+                    {% if task.user_id == user_id %}
+                        <div class="task">
+                            <span class="{{ task.text_for_done_button }}">{{ task.text }}</span>
 
-                        <a href="/delete-to-do/{{ task.id }}">
-                            <button>Delete</button>
-                        </a>
+                            <a href="/delete-to-do/{{ task.id }}">
+                                <button>Delete</button>
+                            </a>
 
-                        <a href="/done-to-do/{{ task.id }}">
-                            <button>{{ task.text_for_done_button }}</button>
-                        </a>
+                            <a href="/done-to-do/{{ task.id }}">
+                                <button>{{ task.text_for_done_button }}</button>
+                            </a>
 
-                        <span id="dueDate">Due date: {{ task.due_date }}</span>
-                    </div>
+                            <span id="dueDate">Due date: {{ task.due_date }}</span>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
