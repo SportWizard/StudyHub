@@ -10,9 +10,28 @@
     padding-top: 20px;
 }
 
-.sidenav h2 {
+.sidenav h2, .sidenav p {
     padding: 6px 8px 6px 16px;
     color: white;
+}
+
+#level p {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 5px 20px;
+    font-size: larger;
+    color: white;
+}
+
+.progressBar {
+    border: solid white;
+    width: 85%;
+    margin-left: 7.5%;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+#level #experience {
+    font-size: small;
 }
 
 .sidenav a {

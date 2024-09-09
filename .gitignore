@@ -1,3 +1,4 @@
 #file that does not get upload to github
 src/.env
 instance/database.db
+.venv

@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_migrate import Migrate, upgrade
 from dotenv import load_dotenv
 import os
 
@@ -16,6 +17,7 @@ def create_app():
     app.config["SECRET_KEY"] = key
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
     db.init_app(app)
+    migrate = Migrate(app, db)
 
     from .views import views
     from .auth import auth

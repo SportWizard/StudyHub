@@ -7,6 +7,9 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True) #each user has a unique id
     username = db.Column(db.String(20)) #max length of username is 20
     password = db.Column(db.String(150)) #max length of password is 150
+    level = db.Column(db.Integer, default=0)
+    exp = db.Column(db.Integer, default=0) # Current exp
+    max_exp = db.Column(db.Integer, default=100) # Exp required to level up
     date_create = db.Column(db.DateTime(timezone=True), default=func.now()) #record the date the account was created
     tasks = db.relationship('Task', backref='user') #connect User with Task and it can use user to access Task
 
