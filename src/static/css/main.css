@@ -30,6 +30,11 @@
     border-radius: 5px;
 }
 
+.progress {
+    height: 20px;
+    background-color: white;
+}
+
 #level #experience {
     font-size: small;
 }
