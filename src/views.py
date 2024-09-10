@@ -11,7 +11,7 @@ views = Blueprint("views", __name__)
 @views.route("/home")
 @login_required #only able to access this page/root only if logged in
 def home():
-    return render_template("home.html", username=current_user.username, level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp) #render and send user's username to the HTML
+    return render_template("home.html", username=current_user.username, level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp, exp_max_exp=current_user.exp / current_user.max_exp * 100) #render and send user's username to the HTML
 
 @views.route("/to-do-list", methods=["GET", "POST"])
 @login_required
@@ -31,7 +31,7 @@ def to_do_list():
 
     tasks = Task.query.all()
 
-    return render_template("toDoList.html", tasks=tasks, user_id=current_user.id, level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp)
+    return render_template("toDoList.html", tasks=tasks, user_id=current_user.id, level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp, exp_max_exp=current_user.exp / current_user.max_exp * 100)
 
 @views.route("/done-to-do/<id>") #<id> is the id of the task
 @login_required
@@ -85,7 +85,7 @@ def study_session():
         
         db.session.commit()
 
-    return render_template("studySession.html", level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp)
+    return render_template("studySession.html", level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp, exp_max_exp=current_user.exp / current_user.max_exp * 100)
 
 @views.route("/customization")
 @login_required

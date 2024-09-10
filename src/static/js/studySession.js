@@ -1,5 +1,6 @@
 function start() {
-    selectTime()
+    selectTime();
+    setTimer();
 }
 
 // For choosing the time / session length the user desire
@@ -73,20 +74,20 @@ var timerInterval;
 var running = false; // Whether the timer is running
 
 // Store time
-var sessionHour;
-var sessionMinute;
-var sessionSecond;
-var breakHour;
-var breakMinute;
-var breakSecond;
+var sessionHour = 0;
+var sessionMinute = 0;
+var sessionSecond = 0;
+var breakHour = 0;
+var breakMinute = 0;
+var breakSecond = 0;
 
 // Time displayed in String
-var sessionHourString;
-var sessionMinuteString;
-var sessionSecondString;
-var breakHourString;
-var breakMinuteString;
-var breakSecondString;
+var sessionHourString = "00";
+var sessionMinuteString = "00";
+var sessionSecondString = "00";
+var breakHourString = "00";
+var breakMinuteString = "00";
+var breakSecondString = "00";
 
 // Store Exp
 var exp = 0;
@@ -146,6 +147,9 @@ function setTimer() {
 
 // Run the timer and also start and stop the timer
 function startStopTimer() {
+    if (sessionHourString == "00" && sessionMinuteString == "00" && sessionSecondString == "00")
+        setTimer();
+
     // Start the timer
     if (!running) {
         document.getElementById("startStopTimer").innerHTML = "Stop";
@@ -199,7 +203,7 @@ function startStopTimer() {
                     }
 
                     document.getElementById("exp").innerHTML = updatedExp;
-                    document.getElementById("progress").style.width = updatedExp + "%"; // Update exp progress bar
+                    document.getElementById("progress").style.width = (updatedExp / currentMaxExp * 100) + "%"; // Update exp progress bar
 
                     exp = 0; // Reset exp
                 }
@@ -303,11 +307,19 @@ function resetTimer() {
     
     clearInterval(timerInterval);
     timerInterval = null;
-    
-    updateTimer("00", "00", "00");  
-    document.getElementById("session").innerHTML = "Session:";
-    
+
     onSession = true;
     running = false;
     currentSession = 1;
+    
+    sessionHour = 0;
+    sessionMinute = 0;
+    sessionSecond = 0;
+    breakHour = 0;
+    breakMinute = 0;
+    breakSecond = 0;
+
+    setTimer();
+
+    exp = 0;
 }
