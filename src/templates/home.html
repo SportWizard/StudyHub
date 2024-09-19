@@ -8,8 +8,8 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <div class="main">
-        <div class="topBar">
+    <div id="main"> <!-- Every inside of this div is shifted so that it is not behide the side navigation -->
+        <div id="topBar">
             <button id="dropdownButton" onclick="dropdown();">
                 <div id="dropdown">
                     <a href="/settings">Setting</a>
@@ -30,6 +30,16 @@
         </div>
 
         <h1>Welcome, {{ username }}</h1>
+        
+        <div id="modes">
+            <h2>Modes:</h2>
 
+            <div class="mode">
+                <h2>Quiz</h2>
+                <a href="/select-quiz">
+                    <button>Enter</button>
+                </a>
+            </div>
+        </div>
     </div>
 {% endblock %}

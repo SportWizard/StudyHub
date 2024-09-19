@@ -87,6 +87,11 @@ def study_session():
 
     return render_template("studySession.html", level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp, exp_max_exp=current_user.exp / current_user.max_exp * 100)
 
+@views.route("/select-quiz")
+@login_required
+def select_quiz():
+    return render_template("selectQuiz.html")
+
 @views.route("/customization")
 @login_required
 def customization():
