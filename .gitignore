@@ -1,5 +1,7 @@
 #file that does not get upload to github
 src/.env
+src/__pycache__
+src/.DS_Store
 instance/database.db
 .venv
 .DS_Store
