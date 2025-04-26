@@ -88,6 +88,9 @@ var breakHourString;
 var breakMinuteString;
 var breakSecondString;
 
+// Store Exp
+var exp = 0;
+
 // Gets display on the screen
 function updateTimer(hour, minute, second) {
     document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + second;
@@ -162,6 +165,35 @@ function startStopTimer() {
                     running = false;
 
                     setTimer();
+
+                    // Send post request to Flask about the amount of exp the user has earned
+                    fetch("/study-session", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json; charset=UTF-8" // Ensure the header matches the data being sent
+                        },
+                        body: JSON.stringify({
+                            exp: exp
+                        })
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+                    currentExp = parseInt(document.getElementById("exp").innerHTML); // Retrieve the exp before update
+
+                    document.getElementById("exp").innerHTML = currentExp + exp; // Update displayed exp
+                    document.getElementById("progress").style.width = (currentExp + exp) + "%"; // Update exp progress bar
+                    exp = 0; // Reset exp
                 }
                 // Break session finished
                 else if (breakHour == 0 && breakMinute == 0 && breakSecond == 0 && !onSession) {
@@ -182,12 +214,14 @@ function startStopTimer() {
                 else if (onSession) {
                     document.getElementById("studySession").style.backgroundColor = "red";
 
+                    // Decrement hour
                     if (sessionMinute == 0 && sessionSecond == 0) {
-                        sessionMinute = 59;
+                        sessionMinute = 60;
                         sessionHour--;
                     }
+                    // Decrement minute
                     if (sessionSecond == 0) {
-                        sessionSecond = 59;
+                        sessionSecond = 60;
                         sessionMinute--;
                     }
 
@@ -195,6 +229,7 @@ function startStopTimer() {
                     sessionMinuteString = sessionMinute;
                     sessionSecondString = sessionSecond;
             
+                    // Adding an extra zero in front for single digit numbers
                     if (sessionHour <= 9)
                         sessionHourString = sessionHour.toString().padStart(2, '0');
                     if (sessionMinute <= 9)
@@ -204,7 +239,11 @@ function startStopTimer() {
                 
                     updateTimer(sessionHourString, sessionMinuteString, sessionSecondString);
 
+                    // Decrement second
                     sessionSecond--;
+
+                    // Exp counter
+                    exp++;
                 }
                 // On going break session
                 else if (!onSession) {

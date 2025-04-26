@@ -22,7 +22,7 @@
     color: white;
 }
 
-.progressBar {
+#progressBar {
     border: solid white;
     width: 85%;
     margin-left: 7.5%;
@@ -30,7 +30,7 @@
     border-radius: 5px;
 }
 
-.progress {
+#progress {
     height: 20px;
     background-color: white;
 }
@@ -82,7 +82,7 @@
     display: none;
     z-index: 1; /* to make it stay on top */
     background-color: gray;
-    width: 200%;
+    width: fit-content;
     margin-top: 40px;
     padding-left: 25%;
     padding-right: 50%;

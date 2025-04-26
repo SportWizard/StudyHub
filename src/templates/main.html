@@ -4,14 +4,14 @@
     <div class="sidenav">
         <h2>STUDY HUB</h2>
 
-        <div id="level">
+        <div id="level" >
             <p>LVL: {{ level }}</p>
             
-            <div class="progressBar">
-                <div class="progress" style="width: {{ exp }}%"></div>
+            <div id="progressBar">
+                <div id="progress" style="width: {{ exp }}%"></div>
             </div>
             
-            <p id="experience">{{ exp }} / {{ max_exp }}</p>
+            <p id="experience"><span id="exp">{{ exp }}</span> / {{ max_exp }}</p>
         </div>
 
         <a href="/home">Home</a>

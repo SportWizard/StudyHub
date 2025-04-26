@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from .models import Task, Account_counter
+from .models import Task, Account_counter, User
 from . import db
 from datetime import datetime
 
@@ -17,6 +17,7 @@ def home():
 @login_required
 def to_do_list():
     if request.method == "POST":
+        # Create a task
         text = request.form.get("text")
         due_date = request.form.get("dueDate")
 
@@ -53,6 +54,7 @@ def done_to_do(id):
 @views.route("/delete-to-do/<id>")
 @login_required
 def delete_to_do(id):
+    # Remove the task depending on the id
     task = Task.query.filter_by(id=id).first()
 
     if not task:
@@ -65,10 +67,23 @@ def delete_to_do(id):
 
     return redirect(url_for("views.to_do_list"))
 
-@views.route("/study-session")
+@views.route("/study-session", methods=["GET", "POST"])
 @login_required
 def study_session():
+    if request.method == "POST":
+        # Update exp
+        exp = request.json.get("exp")
+
+        user = User.query.filter_by(username=current_user.username).first()
+        user.exp += exp
+        db.session.commit()
+
     return render_template("studySession.html", level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp)
+
+@views.route("/customization")
+@login_required
+def customization():
+    return render_template("customization.html")
 
 @views.route("/about")
 @login_required
