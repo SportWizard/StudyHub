@@ -11,7 +11,7 @@ views = Blueprint("views", __name__)
 @views.route("/home")
 @login_required #only able to access this page/root only if logged in
 def home():
-    return render_template("home.html", username=current_user.username) #render and send user's username to the HTML
+    return render_template("home.html", username=current_user.username, level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp) #render and send user's username to the HTML
 
 @views.route("/to-do-list", methods=["GET", "POST"])
 @login_required
