@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from . import db
-from .models import User
+from .models import User, Account_counter
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -27,6 +27,13 @@ def login():
         else:
             flash("Username does not exist.", category="error")
 
+    account_counter = Account_counter.query.first()
+
+    if not account_counter:
+        num_users = Account_counter()
+        db.session.add(num_users)
+        db.session.commit()
+
     return render_template("login.html")
 
 @auth.route("/sign-up", methods=["GET", "POST"])
@@ -52,6 +59,10 @@ def sign_up():
             # create a new user
             new_user = User(username=username, password=generate_password_hash(password, method='pbkdf2:sha256')) #generate a password hash
             db.session.add(new_user) #add the new user
+
+            account_counter = Account_counter.query.first()
+            account_counter.num_users += 1
+
             db.session.commit() #commit the new user to the database
 
             login_user(new_user, remember=True)
@@ -117,6 +128,12 @@ def delete_account():
 
     db.session.delete(user) #delete user's account
     db.session.commit()
+
+    account_counter = Account_counter.query.first()
+
+    if account_counter:
+        account_counter.num_users -= 1
+        db.session.commit()
 
     flash("Account deleted", category="success")
 

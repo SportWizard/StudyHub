@@ -17,3 +17,7 @@ class Task(db.Model):
     text_for_done_button = db.Column(db.Text, default="Done")
     #the user must exist to create the task and delete all the task when the user delete the account
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class Account_counter(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    num_users = db.Column(db.Integer, default=0)

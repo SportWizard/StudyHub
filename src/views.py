@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from .models import Task
+from .models import Task, Account_counter
 from . import db
 from datetime import datetime
 
@@ -73,4 +73,10 @@ def study_session():
 @views.route("/about")
 @login_required
 def about():
-    return render_template("about.html")
+    account_counter = Account_counter.query.first()
+    num_users = 0
+
+    if account_counter:
+        num_users = account_counter.num_users
+
+    return render_template("about.html", num_users=num_users)
