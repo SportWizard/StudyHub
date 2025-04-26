@@ -30,7 +30,7 @@ def to_do_list():
 
     tasks = Task.query.all()
 
-    return render_template("toDoList.html", tasks=tasks, user_id=current_user.id)
+    return render_template("toDoList.html", tasks=tasks, user_id=current_user.id, level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp)
 
 @views.route("/done-to-do/<id>") #<id> is the id of the task
 @login_required
@@ -68,7 +68,7 @@ def delete_to_do(id):
 @views.route("/study-session")
 @login_required
 def study_session():
-    return render_template("studySession.html")
+    return render_template("studySession.html", level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp)
 
 @views.route("/about")
 @login_required
