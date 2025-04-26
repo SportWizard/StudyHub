@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Task
 from . import db
+from datetime import datetime
 
 views = Blueprint("views", __name__)
 
@@ -17,11 +18,12 @@ def home():
 def to_do_list():
     if request.method == "POST":
         text = request.form.get("text")
+        due_date = request.form.get("dueDate")
 
         if not text:
             flash("Task can't be empty.", category="error")
         else:
-            task = Task(text=text, user_id=current_user.id)
+            task = Task(text=text, due_date=due_date, user_id=current_user.id)
             db.session.add(task)
             db.session.commit()
             flash("Task added", category="success")
