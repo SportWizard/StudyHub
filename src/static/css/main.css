@@ -1,3 +1,7 @@
+a {
+    text-decoration: none; /* get rid of underline or anything decoration */
+}
+
 .sidenav {
     height: 100%;
     width: 220px;
@@ -41,7 +45,6 @@
 
 .sidenav a {
     padding: 6px 8px 6px 16px;
-    text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
@@ -57,16 +60,16 @@
     .sidenav a {font-size: 18px;}
 }
 
-.main {
+#main {
     margin-left: 220px; 
     padding: 0px 10px;
 }
 
-.main h1 {
+#main h1 {
     font-size: 80px;
 }
 
-.topBar {
+#topBar {
     margin-bottom: 40px;
 }
 
@@ -90,8 +93,33 @@
 }
 
 #dropdown a {
-    text-decoration: none; /* get rid of underline or anything decoration */
     color: white;
     padding-top: 6px;
     padding-bottom: 6px;
+}
+
+#modes {
+    margin-top: 80px;
+}
+
+.mode {
+    border: solid black 3px;
+    border-radius: 5px;
+    height: 200px;
+    text-align: center;
+    float: left; /* Allow multiple div (mode) to be side by side */
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.mode button {
+    width: 100px;
+    border-radius: 5px;
+    position: relative; /* Move from the current position */
+    top: 100px; /* Distance form the top (current position) */
+}
+
+.mode button a {
+    color: black;
 }
