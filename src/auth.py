@@ -107,3 +107,15 @@ def settings():
 def logout():
     logout_user()
     return redirect(url_for("auth.login"))
+
+@auth.route("/delete-account")
+@login_required
+def delete_account():
+    user = User.query.filter_by(username=current_user.username).first()
+
+    db.session.delete(user)
+    db.session.commit()
+
+    flash("Account deleted", category="success")
+
+    return redirect((url_for("auth.login")))
