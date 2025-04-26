@@ -10,10 +10,10 @@ auth = Blueprint("auth", __name__)
 @auth.route("/login", methods=["GET", "POST"]) #get the form input from html
 def login():
     if request.method == "POST":
-        email = request.form.get("email")
+        username = request.form.get("username")
         password = request.form.get("password")
 
-        user = User.query.filter_by(email=email).first() #check the user with the same input email
+        user = User.query.filter_by(username=username).first() #check the user with the same input username
 
         if user:
             #check if password (hash) matches the password in the database
@@ -25,7 +25,7 @@ def login():
             else:
                 flash("Password incorrect.", category="error")
         else:
-            flash("Email does not exist.", category="error")
+            flash("Username does not exist.", category="error")
 
     return render_template("login.html")
 
@@ -33,16 +33,13 @@ def login():
 def sign_up():
     if request.method == "POST": #check if the form method is "POST"
         username = request.form.get("username")
-        email = request.form.get("email")
         password = request.form.get("password")
         confirm_password = request.form.get("confirmPassword")
 
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(username=username).first()
 
         if user:
-            flash("Email already exist.", category="error") #display message
-        elif len(email) < 4:
-            flash("Invalid email address", category="error")
+            flash("Username already taken", category="error")
         elif len(username) < 3:
             flash("Username is too short", category="error")
         elif len(username) > 20:
@@ -53,7 +50,7 @@ def sign_up():
             flash("Password is too short.", category="error")
         else:
             # create a new user
-            new_user = User(username=username, email=email, password=generate_password_hash(password, method='pbkdf2:sha256')) #generate a password hash
+            new_user = User(username=username, password=generate_password_hash(password, method='pbkdf2:sha256')) #generate a password hash
             db.session.add(new_user) #add the new user
             db.session.commit() #commit the new user to the database
 

@@ -15,15 +15,6 @@
     color: white;
 }
 
-.sidenav button {
-    margin-left: 12%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    width: 70%;
-    height: 40px;
-    border-radius: 50px;
-}
-
 .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -71,46 +62,6 @@
 
 .toDoToday h2 {
     text-align: center;
-}
-
-.toDoToday li {
-    cursor: pointer;
-    font-size: 25px;
-
-    /* make the list items unselectable */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.checked {
-    color: white;
-    text-decoration: line-through;
-}
-
-.checked::before {
-    content: '';
-    position: absolute;
-    border-color: #fff;
-    border-style: solid;
-    border-width: 0 2px 2px 0;
-    top: 10px;
-    left: 16px;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 7px;
-}
-
-.close {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 12px 16px 12px 16px;
-}
-
-.close:hover {
-    color: white;
 }
 
 .calendar {
