@@ -72,17 +72,27 @@ def settings():
 
         user = User.query.filter_by(username=current_user.username).first()
 
+        has_password = True
+
+        if len(username) == 0:
+            username = current_user.username
+
+        if len(password) == 0:
+            has_password = False
+
         if len(username) < 3:
             flash("Username is too short", category="error")
         elif len(username) > 20:
             flash("Username is too long", category="error")
         elif password != confirm_password:
             flash("Password dont\'t match.", category="error")
-        elif len(password) < 6:
+        elif len(password) < 6 and has_password:
             flash("Password is too short.", category="error")
         else:
             user.username = username
-            user.password = generate_password_hash(password, method='pbkdf2:sha256')
+
+            if has_password:
+                user.password = generate_password_hash(password, method='pbkdf2:sha256')
 
             db.session.commit()
 
