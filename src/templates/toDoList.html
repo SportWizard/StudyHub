@@ -3,6 +3,7 @@
 {% block css %}
     <link href="../static/css/home.css" rel="stylesheet"/>
     <link href="../static/css/toDoList.css" rel="stylesheet"/>
+    <script src="../static/js/home.js"></script>
 {% endblock %}
 
 {% block title %}To Do List{% endblock %}
@@ -18,8 +19,15 @@
 
     <div class="main">
         <div class="topBar">
-            <button>
+            <button id="profilePictureButton" onclick="dropdown();">
                 <img src=""/>
+
+                <div id="dropdown">
+                    <a href="">
+                        Setting
+                    </a>
+                    <a href="/login">Logout</a>
+                </div>
             </button>
         </div>
 
