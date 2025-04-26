@@ -30,7 +30,7 @@ def to_do_list():
 
     tasks = Task.query.all()
 
-    return render_template("toDoList.html", tasks=tasks)
+    return render_template("toDoList.html", tasks=tasks, user_id=current_user.id)
 
 @views.route("/done-to-do/<id>") #<id> is the id of the task
 @login_required
