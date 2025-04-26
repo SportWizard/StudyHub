@@ -74,9 +74,11 @@ def settings():
 
         has_password = True
 
+        #check if the user inputed a new username
         if len(username) == 0:
             username = current_user.username
 
+        #check if the user inputed a new password
         if len(password) == 0:
             has_password = False
 
@@ -113,7 +115,7 @@ def logout():
 def delete_account():
     user = User.query.filter_by(username=current_user.username).first()
 
-    db.session.delete(user)
+    db.session.delete(user) #delete user's account
     db.session.commit()
 
     flash("Account deleted", category="success")
