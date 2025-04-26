@@ -176,23 +176,31 @@ function startStopTimer() {
                             exp: exp
                         })
                     })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
                     .then(data => {
-                        console.log('Success:', data);
+                        console.log("Exp Update Success:", data);
                     })
                     .catch(error => {
-                        console.error('Error:', error);
+                        console.error('Exp Update Error:', error);
                     });
 
-                    currentExp = parseInt(document.getElementById("exp").innerHTML); // Retrieve the exp before update
+                    // This is needed to update what is displayed, since getting the value updated using {{ }} requires refreshing and this reset everything
+                    currentLevel = parseInt(document.getElementById("level").innerHTML); // Retrieve level before update
+                    currentExp = parseInt(document.getElementById("exp").innerHTML); // Retrieve exp before update
+                    currentMaxExp = parseInt(document.getElementById("maxExp").innerHTML); // Retrieve max exp before update
 
-                    document.getElementById("exp").innerHTML = currentExp + exp; // Update displayed exp
-                    document.getElementById("progress").style.width = (currentExp + exp) + "%"; // Update exp progress bar
+                    updatedExp = currentExp + exp;// Update displayed exp
+
+                    // Used to update what is displayed due to the problem describe in the previous comment
+                    if (updatedExp >= currentMaxExp) {
+                        // If exp reaches or exceeds max_exp, the exceeded exp will remain, the max_exp will increase by 50 and the the user will level up
+                        updatedExp -= currentMaxExp;
+                        document.getElementById("maxExp").innerHTML = currentMaxExp + 50;
+                        document.getElementById("level").innerHTML = currentLevel + 1;
+                    }
+
+                    document.getElementById("exp").innerHTML = updatedExp;
+                    document.getElementById("progress").style.width = updatedExp + "%"; // Update exp progress bar
+
                     exp = 0; // Reset exp
                 }
                 // Break session finished

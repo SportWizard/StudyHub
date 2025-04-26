@@ -76,6 +76,13 @@ def study_session():
 
         user = User.query.filter_by(username=current_user.username).first()
         user.exp += exp
+
+        # If exp reaches or exceeds max_exp, the exceeded exp will remain, the max_exp will increase by 50 and the the user will level up
+        if user.exp >= user.max_exp:
+            user.exp -= user.max_exp
+            user.max_exp += 50
+            user.level += 1
+        
         db.session.commit()
 
     return render_template("studySession.html", level=current_user.level, exp=current_user.exp, max_exp=current_user.max_exp)
