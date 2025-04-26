@@ -30,6 +30,23 @@ def to_do_list():
 
     return render_template("toDoList.html", tasks=tasks)
 
+@views.route("/done-to-do/<id>")
+@login_required
+def done_to_do(id):
+    task = Task.query.filter_by(id=id).first()
+
+    if not task:
+        flash("Task does not exist", category="error")
+    else:
+        if task.text_for_done_button == "Done":
+            task.text_for_done_button = "Undone"
+        else:
+            task.text_for_done_button = "Done"
+
+        db.session.commit()
+
+    return redirect(url_for("views.to_do_list"))
+
 @views.route("/delete-to-do/<id>")
 @login_required
 def delete_to_do(id):
