@@ -62,6 +62,36 @@ def sign_up():
 
     return render_template("signup.html")
 
+@auth.route("/settings", methods=["GET", "POST"])
+@login_required
+def settings():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirmPassword")
+
+        user = User.query.filter_by(username=current_user.username).first()
+
+        if len(username) < 3:
+            flash("Username is too short", category="error")
+        elif len(username) > 20:
+            flash("Username is too long", category="error")
+        elif password != confirm_password:
+            flash("Password dont\'t match.", category="error")
+        elif len(password) < 6:
+            flash("Password is too short.", category="error")
+        else:
+            user.username = username
+            user.password = generate_password_hash(password, method='pbkdf2:sha256')
+
+            db.session.commit()
+
+            flash("Setting updated")
+
+            return redirect(url_for("views.home"))
+
+    return render_template("settings.html", username=current_user.username)
+
 @auth.route("/logout")
 @login_required
 def logout():

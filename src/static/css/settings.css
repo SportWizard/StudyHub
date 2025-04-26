@@ -1,0 +1,33 @@
+* {
+    text-align: center;
+    margin-top: 2%;
+}
+
+h1 {
+    font-size: 80px;
+}
+
+img {
+    display: block;
+    height: 50px;
+    width: 50px;
+    margin: auto;
+    border-radius: 20px;
+}
+
+button {
+    border-radius: 20px;
+    width: 100px;
+}
+
+label {
+    font-size: 30px;
+}
+
+.form {
+    font-size: 30px;
+    height: 40px;
+    width: 475px;
+    border-radius: 5px;
+    text-align: left;
+}

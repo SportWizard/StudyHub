@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link href="../static/css/settings.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Setting{% endblock %}
+
+{% block content %}
+    <h1>Settings</h1>
+    
+    <img src=""/>
+
+    <button>Browse</button>
+
+    <form method="POST">
+        <label>New Username:</label>
+        <input type="text" class="form" id="username" name="username" placeholder="{{ username }}"/>
+
+        <br/>
+
+        <label>New Password:</label>
+        <input type="password" class="form" id="password" name="password" placeholder="New Password:"/>
+
+        <br/>
+
+        <label>Confirm New Password:</label>
+        <input type="password" class="form" id="confirmPassword" name="confirmPassword" placeholder="Confirm New Password:"/>
+
+        <br/>
+        <br/>
+    
+        <button type="submit">Save</button>
+    </form>
+
+    <br/>
+
+    <a href="/home">
+        <button>Exit</button>
+    </a>
+{% endblock %}
